@@ -7,9 +7,10 @@ EXTERN(ENTRY_POINT);
 
 SECTIONS
 {
-    .entry ORIGIN(SRAM) :
+    .meta ORIGIN(SRAM) :
     {
         KEEP(*(.entry_point))
+        KEEP(*(.update_point))
     } > SRAM
 
     .text :

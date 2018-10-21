@@ -15,6 +15,16 @@ pub struct Display {}
 /// The pointer the watch calls to start running this application.
 pub static ENTRY_POINT: fn(*const Table) -> i32 = entry_point;
 
+#[link_section = ".update_point"]
+#[no_mangle]
+/// The pointer the watch calls to start running this application.
+pub static UPDATE_POINT: fn(*const Table) -> i32 = update_point;
+
+extern "Rust" {
+    fn main() -> i32;
+    fn update() -> i32; // TODO pass 'Resources setup in main to this update function'
+}
+
 #[no_mangle]
 /// The function called by the host to start us up. Does some setup, then
 /// jumps to a function called `main` defined by the actual application using
@@ -26,10 +36,13 @@ pub fn entry_point(raw_ctx: *const Table) -> i32 {
         TABLE_POINTER = Some(ctx);
     };
 
-    extern "Rust" {
-        fn main() -> i32;
-    }
     unsafe { main() }
+}
+
+#[no_mangle]
+/// Calls the user update function
+pub fn update_point(_raw_ctx: *const Table) -> i32 {
+    unsafe { update() }
 }
 
 impl Display {
