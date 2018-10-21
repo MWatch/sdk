@@ -26,10 +26,9 @@ pub fn entry_point(raw_ctx: *const Table) -> i32 {
         TABLE_POINTER = Some(ctx);
     };
 
-    extern "C" {
+    extern "Rust" {
         fn main() -> i32;
     }
-    // call the user application
     unsafe { main() }
 }
 
