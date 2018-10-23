@@ -61,6 +61,7 @@ impl Display {
     }
 }
 
+// TODO notify the kernel this app has crashed?
 #[inline(never)]
 #[panic_handler]
 fn panic(_info: &PanicInfo) -> ! {
