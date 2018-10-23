@@ -2,7 +2,7 @@
 
 use core::panic::PanicInfo;
 use core::sync::atomic::{self, Ordering};
-use mabez_watch_sdk_core::{Table, TABLE_POINTER};
+use mwatch_sdk_core::{Table, TABLE_POINTER};
 
 use embedded_graphics::prelude::*;
 use embedded_graphics::pixelcolor::PixelColorU16;

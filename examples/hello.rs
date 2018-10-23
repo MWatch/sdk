@@ -3,7 +3,7 @@
 #![no_std]
 #![no_main]
 
-extern crate mabez_watch_sdk;
+extern crate mwatch_sdk;
 
 
 use embedded_graphics::prelude::*;
@@ -11,7 +11,7 @@ use embedded_graphics::prelude::*;
 use embedded_graphics::primitives::Circle;
 use embedded_graphics::primitives::Rect;
 
-use mabez_watch_sdk::Display;
+use mwatch_sdk::Display;
 
 
 #[no_mangle]
