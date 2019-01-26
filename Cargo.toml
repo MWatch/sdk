@@ -14,7 +14,7 @@ exclude = [
 ]
 
 [dependencies]
-mwatch-sdk-core = "0.1.0"
+mwatch_kernel = { path = "../mabez-watch-rust" }
 embedded-graphics = "0.4.4"
 
 [dev-dependencies]

@@ -16,7 +16,7 @@ use mwatch_sdk::Display;
 #[no_mangle]
 pub fn main() -> i32 {
     let disp = Display {}; //  TODO create this as a singleton
-    disp.draw(Image16BPP::new(include_bytes!("./mwatch.raw"), 64, 64).translate(Coord::new(32,32)).into_iter()).unwrap();
+    disp.draw(Image16BPP::new(include_bytes!("./apple.raw"), 64, 64).translate(Coord::new(32,32)).into_iter()).unwrap();
     0
 }
 

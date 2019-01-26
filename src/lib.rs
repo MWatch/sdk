@@ -2,7 +2,7 @@
 
 use core::panic::PanicInfo;
 use core::sync::atomic::{self, Ordering};
-use mwatch_sdk_core::{Table, TABLE_POINTER};
+use mwatch_kernel_api::{Table, TABLE_POINTER};
 
 use embedded_graphics::prelude::*;
 use embedded_graphics::pixelcolor::PixelColorU16;

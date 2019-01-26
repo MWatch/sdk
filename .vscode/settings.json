@@ -1,0 +1,4 @@
+{
+    // this stops anoying duplicate lang item in vscode
+    "rust.all_targets": false,
+}
