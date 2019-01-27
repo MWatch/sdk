@@ -3,7 +3,7 @@
 #![no_std]
 #![no_main]
 
-extern crate mwatch_sdk;
+use mwatch_sdk::prelude::*;
 
 #[no_mangle]
 pub fn main() -> i32 {
@@ -11,6 +11,6 @@ pub fn main() -> i32 {
 }
 
 #[no_mangle]
-pub fn update() -> i32 {
+pub fn update(system: &mut System) -> i32 {
     666
 }

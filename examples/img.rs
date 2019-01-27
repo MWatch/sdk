@@ -8,19 +8,16 @@ extern crate mwatch_sdk;
 
 use embedded_graphics::prelude::*;
 use embedded_graphics::image::Image16BPP;
-// use embedded_graphics::fonts::Font6x8;
-
-use mwatch_sdk::Display;
+use mwatch_sdk::prelude::*;
 
 
 #[no_mangle]
 pub fn main() -> i32 {
-    let disp = Display {}; //  TODO create this as a singleton
-    disp.draw(Image16BPP::new(include_bytes!("./apple.raw"), 64, 64).translate(Coord::new(32,32)).into_iter()).unwrap();
-    0
+    16
 }
 
 #[no_mangle]
-pub fn update() -> i32 {
-    666
+pub fn update(system: &mut System) -> i32 {
+    system.display.draw(Image16BPP::new(include_bytes!("./ff_nightly.raw"), 64, 64).translate(Coord::new(32,32)).into_iter()).unwrap();
+    333
 }
