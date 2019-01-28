@@ -5,8 +5,8 @@ name = "mwatch-sdk"
 version = "0.2.0"
 description = "A development SDK for applications on the https://github.com/MWatch"
 keywords = ["no-std", "embedded", "mwatch"]
-repository = "https://github.com/MWatch/mwatch-sdk"
-# readme = "README.md"
+repository = "https://github.com/MWatch/sdk"
+readme = "README.md"
 license = "MIT OR Apache-2.0"
 exclude = [
 	".travis.yml",
