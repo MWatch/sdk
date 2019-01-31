@@ -58,3 +58,8 @@ pub fn update(system: &mut System) -> i32 {
                     .into_iter()).unwrap();
     666
 }
+
+#[no_mangle]
+pub fn input(_system: &mut System, _input: InputType) -> i32 {
+    666
+}

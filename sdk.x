@@ -11,6 +11,7 @@ SECTIONS
     {
         KEEP(*(.entry_point))
         KEEP(*(.update_point))
+        KEEP(*(.input_point))
     } > SRAM
 
     .text :
