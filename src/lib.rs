@@ -4,7 +4,7 @@ pub mod prelude;
 
 use core::panic::PanicInfo;
 use core::sync::atomic::{self, Ordering};
-use mwatch_kernel_api::{CONTEXT_POINTER, CALLBACK_TABLE, Context, InputType};
+use mwatch_kernel_api::{CONTEXT_POINTER, CALLBACK_TABLE, Context, InputEvent};
 
 use embedded_graphics::prelude::*;
 use embedded_graphics::pixelcolor::PixelColorU16;
@@ -23,12 +23,12 @@ pub static UPDATE_POINT: extern "C" fn(*mut Context<'static>) -> i32 = update_po
 #[link_section = ".input_point"]
 #[no_mangle]
 /// The pointer the watch calls to handle input
-pub static INPUT_POINT: extern "C" fn(*mut Context<'static>, input: InputType) -> i32 = input_point;
+pub static INPUT_POINT: extern "C" fn(*mut Context<'static>, input: InputEvent) -> i32 = input_point;
 
 extern "Rust" {
     fn main() -> i32;
     fn update(system: &mut System) -> i32; // TODO pass 'Resources setup in main to this update function'
-    fn input(system: &mut System, input: InputType) -> i32;
+    fn input(system: &mut System, input: InputEvent) -> i32;
 }
 
 #[no_mangle]
@@ -52,7 +52,7 @@ pub extern "C" fn update_point(raw_ctx: *mut Context<'static>) -> i32 {
 
 #[no_mangle]
 /// Calls the user update function
-pub extern "C" fn input_point(raw_ctx: *mut Context<'static>, state: InputType) -> i32 {
+pub extern "C" fn input_point(raw_ctx: *mut Context<'static>, state: InputEvent) -> i32 {
     // Turn the pointer into a reference and store in a static.
     unsafe {
         CONTEXT_POINTER = Some(&mut *raw_ctx);

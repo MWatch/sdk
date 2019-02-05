@@ -1,4 +1,4 @@
 
 
 pub use crate::System;
-pub use mwatch_kernel_api::InputType;
+pub use mwatch_kernel_api::InputEvent;

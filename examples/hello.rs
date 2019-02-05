@@ -60,6 +60,6 @@ pub fn update(system: &mut System) -> i32 {
 }
 
 #[no_mangle]
-pub fn input(_system: &mut System, _input: InputType) -> i32 {
+pub fn input(_system: &mut System, _input: InputEvent) -> i32 {
     666
 }
