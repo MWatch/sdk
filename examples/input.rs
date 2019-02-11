@@ -21,19 +21,17 @@ pub fn main() -> i32 {
 #[no_mangle]
 pub fn update(system: &mut System) -> i32 {
     let mut string: String<U64> = String::new();
-    write!(string, "Input: {:?}", unsafe { LAST }).unwrap();
+    write!(string, "Last Input: {:?}", unsafe { LAST }).unwrap();
     system.display.draw(Font6x8::render_str(string.as_str())
                     .translate(Coord::new(0, 16))
                     .with_stroke(Some(0xF818_u16.into()))
                     .into_iter()).unwrap();
-    unsafe {
-        LAST = InputEvent::Multi;
-    }
     666
 }
 
 #[no_mangle]
-pub fn input(_system: &mut System, input: InputEvent) -> i32 {
+pub fn input(system: &mut System, input: InputEvent) -> i32 {
     unsafe { LAST = input }; 
+    system.logger.log_fmt(format_args!("INPUT: {:?}", input));
     666
 }
