@@ -21,3 +21,8 @@ pub fn update(system: &mut System) -> i32 {
     system.display.draw(Image16BPP::new(include_bytes!("./ff_nightly.raw"), 64, 64).translate(Coord::new(32,32)).into_iter()).unwrap();
     333
 }
+
+#[no_mangle]
+pub fn input(_system: &mut System, _input: InputType) -> i32 {
+    666
+}

@@ -45,7 +45,7 @@ pub fn update(system: &mut System) -> i32 {
     
     unsafe { NUM += 1; }
     let mut string: String<U64> = String::new();
-    write!(string, "Hello from Rust!").unwrap();
+    write!(string, "Hello from SDK!").unwrap();
     system.display.draw(Font6x8::render_str(string.as_str())
                     .translate(Coord::new(0, 16))
                     .with_stroke(Some(0xF818_u16.into()))
@@ -56,5 +56,10 @@ pub fn update(system: &mut System) -> i32 {
                     .translate(Coord::new(24, 48))
                     .with_stroke(Some(0xF818_u16.into()))
                     .into_iter()).unwrap();
+    666
+}
+
+#[no_mangle]
+pub fn input(_system: &mut System, _input: InputEvent) -> i32 {
     666
 }
