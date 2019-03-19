@@ -12,22 +12,26 @@ use display::Display;
 
 #[link_section = ".entry_point"]
 #[no_mangle]
+/// First 4 bytes of the binary as a function ptr
 /// The pointer the watch calls to start running this application.
 pub static ENTRY_POINT: extern "C" fn() -> i32 = entry_point;
 
 #[link_section = ".update_point"]
 #[no_mangle]
+/// Second 4 byte function ptr
 /// The pointer the watch calls to start running this application.
 pub static UPDATE_POINT: extern "C" fn(*mut Context<'static>) -> i32 = update_point;
 
 #[link_section = ".input_point"]
 #[no_mangle]
+/// Final 4 byte function ptr
 /// The pointer the watch calls to handle input
 pub static INPUT_POINT: extern "C" fn(*mut Context<'static>, input: InputEvent) -> i32 = input_point;
 
+/// Required items to make an application
 extern "Rust" {
     fn main() -> i32;
-    fn update(system: &mut UserSpace) -> i32; // TODO pass 'Resources setup in main to this update function'
+    fn update(system: &mut UserSpace) -> i32;
     fn input(system: &mut UserSpace, input: InputEvent) -> i32;
 }
 
@@ -67,6 +71,7 @@ static mut USERSPACE: UserSpace = UserSpace {
 };
 
 #[repr(C)]
+/// User space api abstraction
 pub struct UserSpace {
     pub display: Display,
     pub logger: Logger,
