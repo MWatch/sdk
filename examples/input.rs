@@ -19,7 +19,7 @@ pub fn main() -> i32 {
 }
 
 #[no_mangle]
-pub fn update(system: &mut System) -> i32 {
+pub fn update(system: &mut UserSpace) -> i32 {
     let mut string: String<U64> = String::new();
     write!(string, "Last Input: {:?}", unsafe { LAST }).unwrap();
     system.display.draw(Font6x8::render_str(string.as_str())
@@ -30,7 +30,7 @@ pub fn update(system: &mut System) -> i32 {
 }
 
 #[no_mangle]
-pub fn input(system: &mut System, input: InputEvent) -> i32 {
+pub fn input(system: &mut UserSpace, input: InputEvent) -> i32 {
     unsafe { LAST = input }; 
     system.logger.log_fmt(format_args!("INPUT: {:?}", input));
     666
