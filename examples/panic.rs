@@ -13,7 +13,7 @@ pub fn main() -> i32 {
 }
 
 #[no_mangle]
-pub fn update(_system: &mut UserSpace) -> i32 {
+pub fn update(_system: &mut UserSpace, _display: &mut Display) -> i32 {
     666
 }
 

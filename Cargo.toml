@@ -14,8 +14,8 @@ exclude = [
 ]
 
 [dependencies]
-# mwatch_kernel = { path = "../mabez-watch-rust" }
-mwatch_kernel = "0.9.0"
+mwatch_kernel = { path = "../mabez-watch-rust" }
+# mwatch_kernel = "0.9.0"
 embedded-graphics = "0.4.4"
 
 [dev-dependencies]

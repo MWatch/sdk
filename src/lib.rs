@@ -6,7 +6,7 @@ mod logger;
 
 use core::panic::PanicInfo;
 use core::sync::atomic::{self, Ordering};
-use mwatch_kernel_api::{CONTEXT_POINTER, Context, InputEvent};
+use mwatch_kernel_lib::types::{CONTEXT_POINTER, Context, InputEvent};
 use logger::Logger;
 use display::Display;
 
@@ -31,7 +31,7 @@ pub static INPUT_POINT: extern "C" fn(*mut Context<'static>, input: InputEvent) 
 /// Required items to make an application
 extern "Rust" {
     fn main() -> i32;
-    fn update(system: &mut UserSpace) -> i32;
+    fn update(system: &mut UserSpace, display: &mut Display) -> i32;
     fn input(system: &mut UserSpace, input: InputEvent) -> i32;
 }
 
@@ -51,7 +51,7 @@ pub extern "C" fn update_point(raw_ctx: *mut Context<'static>) -> i32 {
         CONTEXT_POINTER = Some(&mut *raw_ctx);
     };
 
-    unsafe { update(&mut USERSPACE) }
+    unsafe { update(&mut USERSPACE, &mut DISPLAY) }
 }
 
 #[no_mangle]
@@ -66,14 +66,14 @@ pub extern "C" fn input_point(raw_ctx: *mut Context<'static>, state: InputEvent)
 }
 
 static mut USERSPACE: UserSpace = UserSpace {
-    display: Display::new(),
     logger: Logger::new(),
 };
+
+static mut DISPLAY: Display = Display::new();
 
 #[repr(C)]
 /// User space api abstraction
 pub struct UserSpace {
-    pub display: Display,
     pub logger: Logger,
 }
 

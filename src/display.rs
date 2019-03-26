@@ -3,7 +3,7 @@
 use embedded_graphics::prelude::*;
 use embedded_graphics::pixelcolor::PixelColorU16;
 use embedded_graphics::drawable;
-use mwatch_kernel_api::{Context, CALLBACK_TABLE};
+use mwatch_kernel_lib::types::{Context, CALLBACK_TABLE};
 
 
 #[repr(C)]
@@ -21,7 +21,9 @@ impl Display {
         let (width, height) = (128, 128);
         for drawable::Pixel(UnsignedCoord(x, y), color) in item_pixels {
             if x <= width && y <= height {
-                (CALLBACK_TABLE.draw_pixel)(ctx, x as u8, y as u8, color.into_inner());
+                unsafe {
+                    (CALLBACK_TABLE.draw_pixel)(ctx, x as u8, y as u8, color.into_inner());
+                }
             }
         }
         Ok(())

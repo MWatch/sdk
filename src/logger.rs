@@ -1,5 +1,5 @@
 
-use mwatch_kernel_api::{Context, CALLBACK_TABLE};
+use mwatch_kernel_lib::types::{Context, CALLBACK_TABLE};
 
 #[repr(C)]
 pub struct Logger {
@@ -28,7 +28,9 @@ impl Logger {
 impl core::fmt::Write for Logger {
     fn write_str(&mut self, s: &str) -> core::fmt::Result {
         let ctx = Context::get();
-        (CALLBACK_TABLE.print)(ctx, s);
+        unsafe {
+            (CALLBACK_TABLE.print)(ctx, s);
+        }
         Ok(())
     }
 }

@@ -14,8 +14,8 @@ pub fn main() -> i32 {
 }
 
 #[no_mangle]
-pub fn update(system: &mut UserSpace) -> i32 {
-    system.display.draw(Image16BPP::new(include_bytes!("./ff_nightly.raw"), 64, 64).translate(Coord::new(32,32)).into_iter()).unwrap();
+pub fn update(_system: &mut UserSpace, display: &mut Display) -> i32 {
+    display.draw(Image16BPP::new(include_bytes!("./ff_nightly.raw"), 64, 64).translate(Coord::new(32,32)).into_iter()).unwrap();
     333
 }
 

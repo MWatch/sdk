@@ -1,4 +1,5 @@
 
 
 pub use crate::UserSpace;
-pub use mwatch_kernel_api::InputEvent;
+pub use crate::display::Display;
+pub use mwatch_kernel_lib::types::InputEvent;
