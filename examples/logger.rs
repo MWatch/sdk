@@ -11,7 +11,7 @@ pub fn main() -> i32 {
 }
 
 #[no_mangle]
-pub fn update(system: &mut UserSpace) -> i32 {
+pub fn update(system: &mut UserSpace, _display: &mut Display) -> i32 {
     system.logger.log_str("App updated");
     666
 }
