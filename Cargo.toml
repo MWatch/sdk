@@ -2,7 +2,7 @@
 authors = ["Scott Mabin <MabezDev@gmail.com>"]
 edition = "2018"
 name = "mwatch-sdk"
-version = "0.3.0"
+version = "0.4.0"
 description = "A development SDK for applications on the https://github.com/MWatch"
 keywords = ["no-std", "embedded", "mwatch"]
 repository = "https://github.com/MWatch/sdk"
@@ -14,8 +14,8 @@ exclude = [
 ]
 
 [dependencies]
-mwatch_kernel = { path = "../mabez-watch-rust" }
-# mwatch_kernel = "0.9.0"
+# mwatch_kernel = { path = "../mabez-watch-rust" }
+mwatch_kernel = "1.0.0"
 embedded-graphics = "0.4.4"
 
 [dev-dependencies]
