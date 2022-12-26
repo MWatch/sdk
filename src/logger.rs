@@ -1,9 +1,9 @@
 
-use mwatch_kernel_lib::types::{Context, CALLBACK_TABLE};
+use crate::MWatchABI;
 
 #[repr(C)]
 pub struct Logger {
-    _0: u8
+    _0: ()
 }
 
 impl Logger {
@@ -21,15 +21,16 @@ impl Logger {
     }
 
     pub const fn new() -> Self {
-        Logger { _0: 0u8 }
+        Logger { _0: () }
     }
 }
 
 impl core::fmt::Write for Logger {
     fn write_str(&mut self, s: &str) -> core::fmt::Result {
-        let ctx = Context::get();
+        let ctx = MWatchABI::context();
+        let table = MWatchABI::table();
         unsafe {
-            (CALLBACK_TABLE.print)(ctx, s);
+            (table.print)(ctx, s.as_ptr(), s.len());
         }
         Ok(())
     }
