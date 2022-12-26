@@ -9,12 +9,12 @@ use crate::MWatchABI;
 
 #[repr(C)]
 pub struct Display {
-    _0: u8, // TODO store useful info from SetupFN here!! like size, rotation etc
+    _0: (), // TODO store useful info from SetupFN here!! like size, rotation etc
 }
 
 impl Display {
     pub const fn new() -> Self {
-        Display { _0: 0u8 }
+        Display { _0: () }
     }
 }
 
