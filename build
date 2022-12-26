@@ -2,4 +2,4 @@
 
 EXAMPLE=$1
 mkdir -p out
-cargo build --example $EXAMPLE --release && cargo objcopy -- -O binary target/thumbv7em-none-eabi/release/examples/$EXAMPLE out/$EXAMPLE.bin
+cargo build --example $EXAMPLE --release && arm-none-eabi-objcopy -O binary target/thumbv7em-none-eabi/release/examples/$EXAMPLE out/$EXAMPLE.bin
